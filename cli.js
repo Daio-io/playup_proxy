@@ -3,6 +3,16 @@
 var argv = require('yargs')
   .usage('Usage: $0 [options]')
   .demand(1)
+  .option('p', {
+    alias: 'package',
+    type: 'string',
+    demand: true
+  })
+  .option('v', {
+    alias: 'version_code',
+    type: 'string',
+    demand: true
+  })
   .option('t', {
     alias: 'track',
     type: 'string',
@@ -26,6 +36,8 @@ var assert = require('assert')
 var authJSON = JSON.parse(fs.readFileSync(argv.auth)) // assume a JSON
 var options = {
   track: argv.track,
+  package: argv.package,
+  version_code: argv.version_code,
   obbs: argv._.slice(1)
 }
 

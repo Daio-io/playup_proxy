@@ -20,11 +20,12 @@ export default class Upload {
     this.track = params.track
     this.obbs = params.obbs
     this.recentChanges = params.recentChanges
+    this.packageName = params.package
+    this.versionCode = params['version_code']
   }
 
   publish () {
-    return this.parseManifest()
-      .then(() => this.authenticate())
+    return this.authenticate()
       .then(() => this.createEdit())
       .then(() => this.uploadAPK())
       .then(() => this.uploadOBBs())

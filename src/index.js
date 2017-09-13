@@ -2,6 +2,7 @@ import {auth} from 'googleapis'
 import assert from 'assert'
 import Upload from './upload'
 import nodeify from 'nodeify'
+const google = require('googleapis')
 
 function Publisher (options) {
   if (!(this instanceof Publisher)) {
@@ -16,6 +17,7 @@ function Publisher (options) {
     options.private_key,
     ['https://www.googleapis.com/auth/androidpublisher']
   )
+  google.options({ proxy: 'http://www-cache.reith.bbc.co.uk:80', auth: this.client });
 }
 
 Publisher.prototype.upload = function upload (apk, params, cb) {
